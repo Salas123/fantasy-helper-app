@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import HomePage from "./pages/HomePage";
+import EditTeamPage from "./pages/EditTeamPage";
+import CreateTeamPage from "./pages/CreateTeamPage";
+import InsightsPage from "./pages/InsightsPage";
+
+const Tab = createBottomTabNavigator();
+
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName='Home'>
+        <Tab.Screen name='Home' component={HomePage} options={{title: 'Home'}}/>
+        <Tab.Screen name='EditTeam' component={EditTeamPage} options={{title: 'Edit Team'}}/>
+        <Tab.Screen name={'CreateTeam'} component={CreateTeamPage} options={{title: 'Create New Team'}}/>
+        <Tab.Screen name={'InsightsTeam'} component={InsightsPage} options={{title: 'Insights'}}/>
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
